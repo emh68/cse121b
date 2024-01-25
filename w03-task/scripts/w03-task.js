@@ -50,6 +50,8 @@ document.querySelector('#divideNumbers').addEventListener('click', divideNumbers
 /* Decision Structure */
 
 
+
+
 /* ARRAY METHODS - Functional Programming */
 /* Output Source Array */
 
