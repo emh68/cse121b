@@ -63,20 +63,39 @@ myProfile.placesLived.push(
 );
 
 
-
 /* DOM Manipulation - Output */
 
 /* Name */
+document.querySelector('#name').textContent = myProfile.name;
 
 /* Photo with attributes */
-
+document.querySelector('#photo').src = myProfile.photo;
+document.querySelector('#photo').alt = myProfile.name;
 
 /* Favorite Foods List*/
-
+myProfile.favoriteFoods.forEach(food => {
+    let li = document.createElement('li');
+    li.textContent = food;
+    document.querySelector('#favorite-foods').appendChild(li);
+});
 
 /* Hobbies List */
-
+myProfile.hobbies.forEach(hobby => {
+    let li = document.createElement('li');
+    li.textContent = hobby;
+    document.querySelector('#hobbies').appendChild(li);
+});
 
 /* Places Lived DataList */
+const placesElement = document.querySelector('#places-lived');
 
+function createList(list, callbackTemplate) {
+    const htmlList = list.map(callbackTemplate);
+    return htmlList.join("");
+}
 
+function placesTemplate(place) {
+    return `<dt>${place.place}</dt><dd>${place.length}</dd>`;
+}
+
+placesElement.innerHTML = createList(myProfile.placesLived, placesTemplate);
