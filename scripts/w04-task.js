@@ -5,7 +5,7 @@ let myProfile = {
     name: "Eli Hansen",
     photo: "images/profilepicoriginal.jpg",
     favoriteFoods: ['Fettucine Alfredo', 'Pizza', 'Fajitas', 'Ice Cream', 'Caramel Pie'],
-    hobbies: ['Travel', 'Tennis', 'Baseball', 'Water Sports', 'Hiking', 'Guitar', 'Singing', 'Music', 'Electronics'],
+    hobbies: ['Travel', 'Tennis', 'Baseball', 'Water Sports', 'Hiking', 'Guitar', 'Electronics'],
     placesLived: []
 
 };
