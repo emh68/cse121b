@@ -32,32 +32,37 @@ const getTemples = async () => {
 /* reset Function */
 const reset = () => {
     templesElement.innerHTML = '';
-    getTemples();
 }
 
 /* filterTemples Function */
 const filterTemples = (temples) => {
     reset();
-    let filter = document.querySelector('#filtered');
+
+    const filter = document.querySelector('#filtered').value;
+
     switch (filter) {
-        case 'utah':
-            temples.filter(temple => temple.location.toLowerCase().includes('utah'));
+        case "utah":
+            displayTemples(temples.filter(temple => temple.location.toLowerCase().includes("utah")));
             break;
 
-        case 'notutah':
-            temples.filter(temple => !temple.location.toLowerCase().includes('utah'));
+        case "notutah":
+            displayTemples(temples.filter(temple => !temple.location.toLowerCase().includes("utah")));
             break;
 
-        case 'older':
-            temples.filter(temple => temple.dedicated < new Date(1950, 0, 1));
+        case "older":
+            displayTemples(temples.filter(temple => new Date(temple.dedicated) < new Date(1950, 0, 1)));
+            break;
+
+        case "all":
+            displayTemples(temples);
             break;
 
         default:
-            temples;
+            break;
     }
-}
+};
 
 getTemples();
 
 /* Event Listener */
-document.querySelector('#filtered').addEventListener('change', () => { filterTemples(templeList) });
+document.querySelector("#filtered").addEventListener("change", () => { filterTemples(Object.values(templeList)) });
