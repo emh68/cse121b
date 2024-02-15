@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles/flightnavigator.css">
+    <title>CSE 121b Final Project</title>
+</head>
+<header>
+    <h1>Flight Navigator</h1>
+</header>
+
+<body>
+    <main>
+        <section class="inputs">
+            <label for="originLocation">Origin Airport Code:</label>
+            <input type="text" id="originLocation" placeholder="Enter origin airport code">
+
+            <label for="originLocation">Departure</label>
+            <input type="text" id="departureDate" placeholder="YYYY-MM-DD">
+
+            <label for="destinationLocation">Destination Airport Code:</label>
+            <input type="text" id="destinationLocation" placeholder="Enter destination airport code">
+
+            <label for="originLocation">Return</label>
+            <input type="text" id="returnDate" placeholder="YYYY-MM-DD">
+
+            <button onclick="searchFlights">Search Flights</button>
+        </section>
+        <div id="results"></div>
+
+    </main>
+    <footer>
+        <script src="scripts/flightnavigator.js"></script>
+    </footer>
+</body>
+
+</html>

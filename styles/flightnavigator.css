@@ -1,0 +1,52 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+h1 {
+    text-align: center;
+    padding: 20px;
+}
+
+header {
+    background-color: aqua;
+}
+
+body {
+    font-family: 'Roboto', Helvetica, sans-serif;
+}
+
+.inputs {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 0 auto 1rem;
+    border: 1px solid rgba(0, 0, 0, .1);
+    padding: 1rem;
+    background-color: #b9b9b9;
+    box-shadow: 0 0 10px;
+}
+
+label {
+    padding: .35rem;
+}
+
+input {
+    padding: .35rem;
+}
+
+input[type="button"] {
+    padding: .5rem;
+    background-color: #444;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    width: 100%
+}
+
+input[type="checkbox"] {
+    width: 25px;
+    height: 25px;
+}
