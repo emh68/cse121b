@@ -35,3 +35,4 @@ fetch(requestUrl, {
 function searchFlights() {
     const originLocationCode = document.getElementById('originLocation').value;
     const destinationLocationCode = document.getElementById('destinationLocation').value;
+}
