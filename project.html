@@ -29,9 +29,17 @@
             <label for="originLocation">Return</label>
             <input type="text" id="returnDate" placeholder="YYYY-MM-DD">
 
-            <button onclick="searchFlights">Search Flights</button>
+            <button type="button" onclick="makeApiRequest()">Search Flights</button>
+
+            <select id="cabin" title="Choose an airfare class">
+                <option value="" disabled selected>Airfare Class</option>
+                <option value="ECONOMY">Economy Class</option>
+                <option value="PREMIUM_ECONOMY">Premium Economy Class</option>
+                <option value="BUSINESS">Business Class</option>
+                <option value="FIRST">First Class</option>
+            </select>
         </section>
-        <div id="results"></div>
+        <section class="results"></section>
 
     </main>
     <footer>
