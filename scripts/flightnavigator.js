@@ -1,4 +1,5 @@
 
+// Gets an access token
 async function getAccessToken() {
     const apiUrl = 'https://test.api.amadeus.com/v1/security/oauth2/token';
     const clientId = '3JzRClcoXfTsnW3xLF63YmHfpzAA3cii';
@@ -6,6 +7,7 @@ async function getAccessToken() {
 
     const requestBody = `grant_type=client_credentials&client_id=${clientId}&client_secret=${clientSecret}`;
 
+    // If there is an error getting access token displays details
     try {
         const response = await fetch(apiUrl, {
             method: 'POST',
@@ -30,14 +32,14 @@ async function getAccessToken() {
 
 async function makeApiRequest() {
     try {
-        // get access token
+        // Uses access token to authenticate for the api call
         const accessToken = await getAccessToken();
         const originLocationCode = document.querySelector('#originLocation').value;
         const destinationLocationCode = document.querySelector('#destinationLocation').value;
         const departureDate = document.querySelector('#departureDate').value;
         const cabinClass = document.querySelector('#cabin').value;
 
-        // Validate user input (add your own validation logic as needed)
+        // Validate user input
         if (!originLocationCode || !destinationLocationCode) {
             console.error('Please fill in all required fields.');
             return;
@@ -123,6 +125,7 @@ async function makeApiRequest() {
         console.error('Error making API request:', error);
     }
 }
+// Event listener for search button
 document.querySelector('#searchFlightsBtn').addEventListener('click', makeApiRequest);
 
 
