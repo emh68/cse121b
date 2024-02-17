@@ -10,27 +10,28 @@
     <link rel="stylesheet" href="styles/flightnavigator.css">
     <title>CSE 121b Final Project</title>
 </head>
-<header>
-    <h1>Flight Navigator</h1>
-</header>
 
 <body>
+    <header>
+        <h1>Flight Navigator</h1>
+    </header>
     <main>
         <section class="inputs">
-            <label for="originLocation">Origin Airport Code:</label>
+            <label for="originLocation">Origin:</label>
             <input type="text" id="originLocation" placeholder="Enter origin airport code">
 
-            <label for="originLocation">Departure</label>
+            <label for="originLocation">Departure Date</label>
             <input type="text" id="departureDate" placeholder="YYYY-MM-DD">
 
-            <label for="destinationLocation">Destination Airport Code:</label>
+            <label for="destinationLocation">Destination:</label>
             <input type="text" id="destinationLocation" placeholder="Enter destination airport code">
 
-            <label for="originLocation">Return</label>
-            <input type="text" id="returnDate" placeholder="YYYY-MM-DD">
+            <!-- <label for="originLocation">Return</label>
+            <input type="text" id="returnDate" placeholder="YYYY-MM-DD"> -->
 
-            <button type="button" id="searchFlightsBtn">Search Flights</button>
-
+            <div id="button">
+                <button type="button" id="searchFlightsBtn">Search Flights</button>
+            </div>
             <select id="cabin" title="Choose an airfare class">
                 <option value="" disabled selected>Airfare Class</option>
                 <option value="ECONOMY">Economy Class</option>

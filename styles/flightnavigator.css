@@ -11,15 +11,22 @@ h1 {
 
 header {
     background-color: aqua;
+    padding: 20px;
 }
 
 body {
     font-family: 'Roboto', Helvetica, sans-serif;
 }
 
+main {
+    width: 100%;
+}
+
 .inputs {
     display: flex;
     flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: center;
     align-items: center;
     margin: 0 auto 1rem;
     border: 1px solid rgba(0, 0, 0, .1);
@@ -36,17 +43,36 @@ input {
     padding: .35rem;
 }
 
-input[type="button"] {
+#button {
+    padding: 20px;
+}
+
+#searchFlightsBtn {
     padding: .5rem;
     background-color: #444;
     color: white;
     border: none;
     border-radius: 5px;
     cursor: pointer;
-    width: 100%
+    width: 200px
 }
 
-input[type="checkbox"] {
-    width: 25px;
-    height: 25px;
+.resultsList {
+    list-style: none;
+    padding: 50px;
+}
+
+.resultsList li {
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    padding: 40px;
+
+}
+
+.resultsList li strong {
+    font-size: 1.2em;
+}
+
+.resultsList li .flightOfferSegment {
+    margin-top: 20px;
 }
