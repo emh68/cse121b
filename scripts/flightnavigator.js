@@ -28,54 +28,6 @@ async function getAccessToken() {
     }
 }
 
-// Function to make the API request
-async function makeApiRequest() {
-    try {
-        // get access token
-        const accessToken = await getAccessToken();
-
-
-        // Define the API endpoint
-        const apiUrl = 'https://test.api.amadeus.com/v2/shopping/flight-offers?access_token=' + accessToken;
-
-        const response = await fetch(apiUrl, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(requestData),
-        });
-
-        if (!response.ok) {
-            throw new Error(`HTTP error! Status: ${response.status}`);
-        }
-
-        const responseData = await response.json();
-        console.log('API Response:', responseData);
-    } catch (error) {
-        console.error('Error making API request:', error);
-    }
-}
-
-// Call the function when you want to make the API request
-makeApiRequest();
-
-// Function to display API response on the webpage
-function displayApiResponse(responseData) {
-    const resultsContainer = document.querySelector('.results');
-
-    // Clear previous results
-    resultsContainer.innerHTML = '';
-
-    // Create a pre element to display formatted JSON
-    const jsonPre = document.createElement('pre');
-    jsonPre.textContent = JSON.stringify(responseData, null, 2);
-
-    // Append the pre element to the results container
-    resultsContainer.appendChild(jsonPre);
-}
-
-
 async function makeApiRequest() {
     try {
         // get access token
@@ -165,10 +117,153 @@ async function makeApiRequest() {
 
         const responseData = await response.json();
         console.log('API Response:', responseData);
+        // Format the flight offer data
+        // const formattedData = formatFlightOffer(responseData.data[0]);
 
+        // Display the parsed information on the webpage
+        // displayParsedData(formattedData);
+        // when not commented out JSON displays on webpage
+        ///////////////////////////////////////////////
         displayApiResponse(responseData);
     } catch (error) {
         console.error('Error making API request:', error);
     }
 }
+document.querySelector('#searchFlightsBtn').addEventListener('click', makeApiRequest);
+
+// function displayApiResponse(responseData) {
+//     const resultsContainer = document.querySelector('.resultsList');
+
+// Clear previous results
+// resultsContainer.innerHTML = '';
+
+// Create a pre element for displaying JSON
+// const preElement = document.createElement('pre');
+// preElement.textContent = JSON.stringify(responseData, null, 2); // 2 spaces for indentation
+
+// Append the JSON string to the results container
+//     resultsContainer.appendChild(preElement);
+// }
+
+// Using the getNestedKeys method to get a value for a key
+// const departureIataCode = data[0].itineraries[0].segments[0].departure.iataCode;
+// const arrivalIataCode = data[0].itineraries[0].segments[0].arrival.iataCode;
+// const departureDateAndTime = data[0].itineraries[0].segments[0].departure.at;
+// const arrivalDateAndTime = data[0].itineraries[0].segments[0].arrival.at;
+// const departureIataCode2 = data[0].itineraries[0].segments[1].departure.iataCode;
+// const arrivalIataCode2 = data[0].itineraries[0].segments[1].arrival.iataCode;
+// console.log("Departure IATA Code: ", departureIataCode);
+// console.log("Arrival IATA Code: ", arrivalIataCode);
+// console.log("Departure IATA Code: ", departureIataCode2);
+// console.log("Arrival IATA Code: ", arrivalIataCode2);
+// console.log("Departure Date and Time: ", departureDateAndTime);
+// console.log("Arrival Date and Time: ", arrivalDateAndTime);
+
+// const departureDateTimeString = departureDateAndTime;
+// const arrivalDateTimeString = arrivalDateAndTime;
+
+// const [date, time] = departureDateTimeString.split('T');
+// console.log('Date', date);
+// console.log('Time', time);
+// const time24hr = time;
+
+// const time12hr = convertTo12hrFormat(time);
+// function convertTo12hrFormat(time) {
+//     const [hours, minutes] = time.split(':');
+//     let period = 'AM';
+//     let hours12hr = parseInt(hours, 10);
+//     if (hours12hr >= 12) {
+//         period = 'PM';
+//         if (hours12hr > 12) {
+//             hours12hr -= 12;
+//         }
+//     }
+
+//     console.log(`${hours12hr}:${minutes} ${period}`);
+// }
+
+// responseData.data.forEach((flight) => {
+//     // Iterate through each leg (itinerary) of the flight
+//     flight.itineraries.forEach((itinerary, legIndex) => {
+//         console.log(`Leg ${legIndex + 1}:`);
+
+//         // Iterate through each segment of the leg
+//         itinerary.segments.forEach((segment, segmentIndex) => {
+//             console.log(`  Segment ${segmentIndex + 1}:`);
+//             console.log(`    Departure IATA Code: ${segment.departure.iataCode}`);
+//             console.log(`    Arrival IATA Code: ${segment.arrival.iataCode}`);
+//             console.log(`    Departure Date and Time: ${segment.departure.at}`);
+//             console.log(`    Arrival Date and Time: ${segment.arrival.at}`);
+//             // ... other segment properties
+//         });
+//     });
+// });
+
+function displayApiResponse(responseData) {
+    const resultsContainer = document.querySelector('.resultsList');
+
+    // Clear previous results
+    resultsContainer.innerHTML = '';
+
+    // Iterate through each flight data object in the response
+    responseData.data.forEach((flight) => {
+        // Iterate through each leg (itinerary) of the flight
+        flight.itineraries.forEach((itinerary, legIndex) => {
+            const listItem = document.createElement('li');
+
+            // Check if 'price' property exists in the 'itinerary' object
+            const totalPrice = itinerary.price && itinerary.price.grandTotal ? `$${itinerary.price.grandTotal}` : 'N/A';
+
+            listItem.innerHTML = `
+                <strong>Leg ${legIndex + 1}</strong><br>
+                Departure: ${itinerary.segments[0].departure.iataCode}<br>
+                Arrival: ${itinerary.segments[0].arrival.iataCode}<br>
+                Departure Date and Time: ${itinerary.segments[0].departure.at}<br>
+                Arrival Date and Time: ${itinerary.segments[0].arrival.at}<br><br><br>
+                <strong>Leg ${legIndex + 2}</strong><br>
+                Departure: ${itinerary.segments[1].departure.iataCode}<br>
+                Arrival: ${itinerary.segments[1].arrival.iataCode}<br>
+                Departure Date and Time: ${itinerary.segments[1].departure.at}<br>
+                Arrival Date and Time: ${itinerary.segments[1].arrival.at}<br>
+                
+                ------------------------------
+            `;
+            resultsContainer.appendChild(listItem);
+        });
+
+    });
+}
+
+// ... (rest of the code)
+
+// function displayApiResponse(responseData) {
+//     const resultsContainer = document.querySelector('.resultsList');
+
+//     // Clear previous results
+//     resultsContainer.innerHTML = '';
+
+//     // Iterate through each flight data object in the response
+//     responseData.data.forEach((flight) => {
+//         // Iterate through each leg (itinerary) of the flight
+//         flight.itineraries.forEach((itinerary, legIndex) => {
+//             const listItem = document.createElement('li');
+
+//             listItem.innerHTML = `
+//                 <strong>Leg ${legIndex + 1}</strong><br>
+//                 Departure: ${itinerary.segments[0].departure.iataCode}<br>
+//                 Arrival: ${itinerary.segments[0].arrival.iataCode}<br>
+//                 Departure Date and Time: ${itinerary.segments[0].departure.at}<br>
+//                 Arrival Date and Time: ${itinerary.segments[0].arrival.at}<br><br><br>
+//                 <strong>Leg ${legIndex + 2}</strong><br>
+//                 Departure: ${itinerary.segments[1].departure.iataCode}<br>
+//                 Arrival: ${itinerary.segments[1].arrival.iataCode}<br>
+//                 Departure Date and Time: ${itinerary.segments[1].departure.at}<br>
+//                 Arrival Date and Time: ${itinerary.segments[1].arrival.at}<br>
+//                 Total: $${price.grandTotal}
+//                 ------------------------------
+//             `;
+//             resultsContainer.appendChild(listItem);
+//         });
+//     });
+// }
 

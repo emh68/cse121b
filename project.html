@@ -29,7 +29,7 @@
             <label for="originLocation">Return</label>
             <input type="text" id="returnDate" placeholder="YYYY-MM-DD">
 
-            <button type="button" onclick="makeApiRequest()">Search Flights</button>
+            <button type="button" id="searchFlightsBtn">Search Flights</button>
 
             <select id="cabin" title="Choose an airfare class">
                 <option value="" disabled selected>Airfare Class</option>
@@ -39,7 +39,9 @@
                 <option value="FIRST">First Class</option>
             </select>
         </section>
-        <section class="results"></section>
+        <section class="results">
+            <ul class="resultsList"></ul>
+        </section>
 
     </main>
     <footer>
