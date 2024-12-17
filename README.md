@@ -74,13 +74,10 @@ You can view the final project at the following link:
 
 [**View CSE 121B Project Website**](https://emh68.github.io/cse121b/index.html)
 
+## Resources
+- [Course Syllabus](https://byui-cse.github.io/cse121b-course/syllabus.html)
+- [Course Content](https://byui-cse.github.io/cse121b-course/)
+
+
 ## **Course Disclaimer**
-
-Please note that the course material and code should not be copied or redistributed without permission.
-
----
-
-
-
-
-
+> *Please note this material is for educational purposes only. Redistribution or reuse is prohibited without permission.*
